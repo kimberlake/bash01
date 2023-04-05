@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+## ex05
+
+expectedFileName='"\?$*’MaRViN’*$?\"'
+expectedFileContent=42
+
+fileName=$(ls -1)
+fileContent=$(cat "$fileName")
+
+if [ $fileContent != $expectedFileContent ]; then
+  echo "Expected content:"
+  echo "$expectedFileContent"
+  echo "Got content:"
+  echo "$fileContent"
+  echo "✖"
+elif [ $fileName != $expectedFileName ]; then
+  echo "Expected filename:"
+  echo "$expectedFileName"
+  echo "---"
+  echo "Got filename:"
+  echo "$fileName"
+  echo "✖"
+else
+  echo "✔︎"
+fi

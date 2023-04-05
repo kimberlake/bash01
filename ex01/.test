@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+## ex01
+export FT_USER=$(whoami)
+
+file=print_groups.sh
+
+input=$($SHELL $file)
+expected="2020,everyone,netaccounts,_developer"
+
+if [[ "$input" = "$expected" ]]; then
+  echo "✔︎"
+else
+  echo "Expected:"
+  echo "$expected"
+  echo "Got:"
+  echo "$input"
+  echo "✖"
+fi

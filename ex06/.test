@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+## ex06
+
+file=skip.sh
+parentFolder=$(pwd)
+pathToFile="${parentFolder}/${file}"
+mkdir test && cd test
+cp $pathToFile .
+
+input="$($SHELL $file)"
+expected="total 8"
+
+cd $parentFolder
+rm -r test
+
+if [ "$input" = "$expected" ]; then
+  echo "✔︎"
+else
+  echo "Expected:"
+  echo "$expected"
+  echo "---"
+  echo "Got:"
+  echo "$input"
+  echo "✖"
+fi

@@ -1,18 +1,26 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
+## ex02
 
 file=find_sh.sh
 touch a{01..03}.sh
 
-input=$(bash $file)
-expected=$'a01\na02\na03\nfile_sh'
+input=$($SHELL $file)
+expected="a1\na2\na3\nfind_sh"
 
-if printf '%s\n' "$expected" | diff -u <($input) -; then
+echo "$input" > input.txt
+echo "$expected" > expected.txt
+
+diff_output=$(diff input.txt expected.txt)
+
+if [ -z "$diff_output" ]; then
   echo "✔︎"
 else
   echo "Expected:"
-  echo "'$expected'"
+  echo "$expected"
+  echo "---"
   echo "Got:"
-  echo "'$input'"
+  echo "$input"
   echo "✖"
 fi
 
+rm input.txt expected.txt a*.sh

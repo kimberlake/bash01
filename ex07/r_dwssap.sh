@@ -11,4 +11,3 @@ grep -v '^#' $file \
 | sed -n "${FT_LINE1},${FT_LINE2}p" \
 | awk '{printf "%s%s",sep,$0;sep=", "}' \
 | sed 's/$/./'
-# | tr '\n' ',' 

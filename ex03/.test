@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+## ex03
+
+file=count_files.sh
+parentFolder=$(pwd)
+pathToFile="${parentFolder}/${file}"
+mkdir test && cd test
+cp $pathToFile .
+touch a{01..03}.sh
+mkdir a{01..2}
+touch a1\a1
+
+input=$($SHELL $file)
+expected=8
+
+cd $parentFolder
+rm -r test
+
+if [[ $input -eq $expected ]]; then
+  echo "✔︎"
+else
+  echo "Expected:"
+  echo "$expected"
+  echo "---"
+  echo "Got:"
+  echo "$input"
+  echo "✖"
+fi
