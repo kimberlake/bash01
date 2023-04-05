@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+file=find_sh.sh
+touch a{01..03}.sh
+
+input=$(bash $file)
+expected=$'a01\na02\na03\nfile_sh'
+
+if printf '%s\n' "$expected" | diff -u <($input) -; then
+  echo "✔︎"
+else
+  echo "Expected:"
+  echo "'$expected'"
+  echo "Got:"
+  echo "'$input'"
+  echo "✖"
+fi
+
